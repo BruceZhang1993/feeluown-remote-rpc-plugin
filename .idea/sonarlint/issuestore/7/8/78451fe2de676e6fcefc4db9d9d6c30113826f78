@@ -1,0 +1,5 @@
+
+kpython:S116"ORename this field "CliMode" to match the regular expression ^[_a-z][_a-z0-9]*$.(‘¼Á˜ûÿÿÿÿ
+fpython:S116"ORename this field "GuiMode" to match the regular expression ^[_a-z][_a-z0-9]*$.(Ì¢øÆ
+npython:S116"RRename this field "DaemonMode" to match the regular expression ^[_a-z][_a-z0-9]*$.(äœ‰úÿÿÿÿ
+mpython:S117§"URename this local variable "FApp" to match the regular expression ^[_a-z][a-z0-9_]*$.(¾ø½

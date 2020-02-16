@@ -1,0 +1,16 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.douban.com/simple"
+verify_ssl = true
+
+[dev-packages]
+pytest = "*"
+jsonrpcclient = "*"
+
+[packages]
+feeluown = {editable = true,path = "./FeelUOwn"}
+jsonrpcserver = "*"
+tornado = "*"
+
+[requires]
+python_version = "3.8"
