@@ -1,4 +1,5 @@
 import jsonrpcclient
+import json
 
 
 def test_ping():
@@ -7,4 +8,4 @@ def test_ping():
     assert isinstance(response, jsonrpcclient.Response)
     assert response.data.ok is True
     assert response.data.jsonrpc == '2.0'
-    assert response.data.result == 'pong'
+    assert json.loads(response.data.result) == 'pong'

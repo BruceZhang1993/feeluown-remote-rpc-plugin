@@ -22,3 +22,5 @@ Q
 Makefile,8/3/836efb6e25a091dcb4ff8e1dbb2f0be6a5cbf14c
 N
 FeelUOwn/fuocore/live_lyric.py,e/0/e03c5ac41d1446b52151f5a170747a9a5149c193
+7
+LICENSE,0/3/0398ccd0f49298b10a3d76a47800d2ebecd49859

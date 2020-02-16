@@ -1,8 +1,10 @@
 import logging
+import json
 from abc import ABC
 
 from feeluown.app import App
 from fuocore import library
+from fuocore.playlist import PlaybackMode
 from tornado import ioloop, web
 from jsonrpcserver import method, async_dispatch as dispatch
 
@@ -11,12 +13,35 @@ logger = logging.getLogger('jsonrpc')
 
 @method
 async def ping():
-    return 'pong'
+    return json.dumps('pong')
 
 
 @method
-async def lyric():
-    return str(JsonRpcService.fuoapp.live_lyric.current_sentence)
+async def status():
+    fuoapp = JsonRpcService.fuoapp
+
+    return json.dumps({
+        "track": {
+            "provider": fuoapp.player.current_song.source,
+            "title": fuoapp.player.current_song.title,
+            "artists": [artist.name for artist in fuoapp.player.current_song.artists],
+            "album": fuoapp.player.current_song.album_name,
+            "duration": fuoapp.player.current_song.duration
+        } if fuoapp.player.current_song else {},
+        "player": {
+            "state": fuoapp.player.state.name,
+            "volume": fuoapp.player.volume,
+            "repeat": int(fuoapp.playlist.playback_mode in (PlaybackMode.one_loop, PlaybackMode.loop)),
+            "random": int(fuoapp.playlist.playback_mode == PlaybackMode.random),
+            "position": fuoapp.player.position
+        },
+        "live_lyric": fuoapp.live_lyric.current_sentence
+    })
+
+
+@method
+async def live_lyric():
+    return json.dumps(str(JsonRpcService.fuoapp.live_lyric.current_sentence))
 
 
 class MainHandler(web.RequestHandler, ABC):
